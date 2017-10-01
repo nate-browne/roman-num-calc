@@ -63,8 +63,8 @@ public class RNC {
         System.out.println("Invalid input for user string " + userInput);
       } else {
 
-        stack1.push(userInput);
-        System.err.println("You added " + stack1.peek());
+        stack1.add(userInput);
+        System.err.println("You added " + stack1.peekLast());
       }
 
       // Reset the boolean and string for the next set of input
@@ -91,7 +91,7 @@ public class RNC {
 
     // Repeat the input back to the user
     System.out.print("\nThe Roman Numeral you entered to calculate is: ");
-    for(int i = inputArray.length - 1; i >= 0; i--) {
+    for(int i = 0; i < inputArray.length; i++) {
 
       System.out.print(inputArray[i]);
     }
