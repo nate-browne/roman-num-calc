@@ -38,7 +38,7 @@ public class RNC {
     System.out.print("Type in a string of Roman Numerals ");
     System.out.print("(I, V, X, L, C, D, M). ");
     System.out.print("\nThen, type EOF when finished to have it calculated in");
-    System.out.print(" decimal and hexadecimal. \nPress enter between each ");
+    System.out.print(" decimal and hexadecimal. \nAdd a space between each ");
     System.out.println("character for correct parsing.");
 
 
@@ -64,7 +64,6 @@ public class RNC {
       } else {
 
         stack1.add(userInput);
-        System.err.println("You added " + stack1.peekLast());
       }
 
       // Reset the boolean and string for the next set of input
@@ -81,10 +80,10 @@ public class RNC {
    * it into decimal.
    * @return the integer value of the roman numeral strings entered in.
    */
-  private static int calculate() {
+  private static int eval() {
 
-    // Return value of the method
-    int answer = 0;
+    // Return value of the method, last entered number, and the next number
+    int answer = 0, currentNum = 0, nextNum = 0, numAfter = 0, ogNextNum = 0;
 
     // Turn the stack into an array for printing
     String[] inputArray = stack1.toArray(new String[0]);
@@ -96,7 +95,66 @@ public class RNC {
       System.out.print(inputArray[i]);
     }
 
+    // Add a new line for readability
     System.out.println();
+
+    // Begin calculation
+    while(!stack1.isEmpty()) {
+
+      // Grab the current number from the deque and find the decmial value
+      String data = stack1.poll();
+      currentNum = numerals.get(data);
+
+      // Grab the upcoming number from the deque and find the decimal value
+      String next = stack1.poll();
+
+      // Grab two numbers ahead from the deque
+      String later = stack1.poll();
+
+      /* Perform internal calculations */
+
+      // If the next number isn't null, set two variables to the HashMap value
+      // for the string entered
+      if(next != null) {
+
+        ogNextNum = nextNum = numerals.get(next);
+
+        // If the 2nd next number isn't null, set numAfter to the HashMap value
+        // for the string entered in
+        if(later != null) {
+
+          numAfter = numerals.get(later);
+        }
+
+        // Subtract if two numbers down is larger than the next number
+        if(numAfter > nextNum) {
+
+          nextNum = numAfter - nextNum;
+
+        // Add if less than or equal to
+        } else {
+
+          nextNum += numAfter;
+        }
+
+        // If the original next number is larger than the current, subtract
+        // those two numbers and add the difference to the running total
+        if(ogNextNum > currentNum) {
+
+          answer += nextNum - currentNum;
+
+        // Add the two numbers and add the sum to the running total
+        } else {
+
+          answer += nextNum + currentNum;
+        }
+
+      // The last number has been polled, so add it to the running total
+      } else {
+
+        answer += currentNum;
+      }
+    }
 
     return answer;
   }
@@ -104,7 +162,7 @@ public class RNC {
   /**
    * This is the main method of the program. It calls grabInput and calculate to
    * correctly turn Roman numerals to decimal and later translates the answer to
-   * hexadecimal before looping.
+   * hexadecimal before closing.
    * @param args String array of command line arguments
    */
   public static void main(String[] args) {
@@ -128,12 +186,12 @@ public class RNC {
     grabInput();
 
     // Convert to Roman Numerals
-    int answer = calculate();
+    int result = eval();
 
     // Report the results
     System.out.print("The Roman numeral string you entered converted to");
-    System.out.println(" decimal is " + answer);
+    System.out.println(" decimal is: " + result);
 
-    System.out.println("In hex, the value is " + Integer.toHexString(answer));
+    System.out.println("In hex, the value is: " + Integer.toHexString(answer));
   }
 }
