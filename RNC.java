@@ -45,10 +45,10 @@ public class RNC {
     // Start loop for grabbing values
     while(input.hasNext()) {
 
-      // Grab first line of input
+      // Grab input and convert it to upper case for comparison
       userInput = input.next().toUpperCase();
 
-      // Iterate through the array checking if the input is valid
+      // Iterate through the array checking if the input is a valid numeral
       for(int i = 0; i < numeralList.length; i++) {
 
         if(userInput.equals(numeralList[i])) {
@@ -61,6 +61,8 @@ public class RNC {
       if(!foundInArray) {
 
         System.out.println("Invalid input for user string " + userInput);
+        System.out.print("Your other input has been saved; please retype your");
+        System.out.print(" last entry here: ");
       } else {
 
         stack1.add(userInput);
@@ -71,7 +73,7 @@ public class RNC {
       userInput = null;
     }
 
-    // Close the scanner to finish reading input
+    // Finally, close the scanner to finish parsing input
     input.close();
   }
 
@@ -105,13 +107,13 @@ public class RNC {
       String data = stack1.poll();
       currentNum = numerals.get(data);
 
-      // Grab the upcoming number from the deque and find the decimal value
+      // Grab the upcoming number from the deque
       String next = stack1.poll();
 
       // Grab two numbers ahead from the deque
       String later = stack1.poll();
 
-      /* Perform internal calculations */
+      /* Perform internal calculations on next and later variables */
 
       // If the next number isn't null, set two variables to the HashMap value
       // for the string entered
