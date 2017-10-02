@@ -85,7 +85,7 @@ public class RNC {
     // Return value of the method, last entered number, and the next number
     int answer = 0, currentNum = 0, nextNum = 0, numAfter = 0, ogNextNum = 0;
 
-    // Turn the stack into an array for printing
+    // Turn the stack into an array for printing back to the user
     String[] inputArray = stack1.toArray(new String[0]);
 
     // Repeat the input back to the user
@@ -192,6 +192,6 @@ public class RNC {
     System.out.print("The Roman numeral string you entered converted to");
     System.out.println(" decimal is: " + result);
 
-    System.out.println("In hex, the value is: " + Integer.toHexString(answer));
+    System.out.println("In hex, the value is: " + Integer.toHexString(result));
   }
 }
