@@ -162,7 +162,7 @@ public class RNC {
   }
 
   /**
-   * This is the main method of the program. It calls grabInput and calculate to
+   * This is the main method of the program. It calls grabInput and eval to
    * correctly turn Roman numerals to decimal and later translates the answer to
    * hexadecimal before closing.
    * @param args String array of command line arguments
