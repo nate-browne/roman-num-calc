@@ -127,17 +127,17 @@ public class RNC {
         if(later != null) {
 
           numAfter = numerals.get(later);
-        }
 
-        // Subtract if two numbers down is larger than the next number
-        if(numAfter > nextNum) {
+          // Subtract if two numbers down is larger than the next number
+          if(numAfter > nextNum) {
 
-          nextNum = numAfter - nextNum;
+            nextNum = numAfter - nextNum;
 
-        // Add if less than or equal to
-        } else {
+          // Add if less than or equal to
+          } else {
 
-          nextNum += numAfter;
+            nextNum += numAfter;
+          }
         }
 
         // If the original next number is larger than the current, subtract
@@ -195,6 +195,6 @@ public class RNC {
     System.out.print("The Roman numeral string you entered converted to");
     System.out.println(" decimal is: " + result);
 
-    System.out.println("In hex, the value is: " + Integer.toHexString(result));
+    System.out.println("In hex, it is: 0x" + Integer.toHexString(result));
   }
 }
