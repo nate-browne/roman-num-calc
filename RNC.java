@@ -195,6 +195,8 @@ public class RNC {
     System.out.print("The Roman numeral string you entered converted to");
     System.out.println(" decimal is: " + result);
 
-    System.out.println("In hex, it is: 0x" + Integer.toHexString(result));
+    String hexResult = Integer.toHexString(result).toUpperCase();
+
+    System.out.println("In hex, the number is: 0x" + hexResult);
   }
 }
