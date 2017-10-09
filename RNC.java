@@ -3,7 +3,7 @@
  * Date: 20 September 2017
  * File: RNC.java
  * Version: 1.0
- * Last Modified: 4 October 2017
+ * Last Modified: 9 October 2017
  * This program translates strings of Roman numerals into the decimal
  * equivalent.
  */
@@ -171,7 +171,7 @@ public class RNC {
   public static void main(String[] args) {
 
     // Create the HashMap
-    numerals = new HashMap<String, Integer>(7);
+    numerals = new HashMap<String, Integer>(numeralList.length);
 
     // Add the correct values into the HashMap
     numerals.put("I", 1);
