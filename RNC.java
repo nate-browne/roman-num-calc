@@ -3,7 +3,7 @@
  * Date: 20 September 2017
  * File: RNC.java
  * Version: 1.0
- * Last Modified: 9 October 2017
+ * Last Modified: 2 December 2017
  * This program translates strings of Roman numerals into the decimal
  * equivalent.
  */
