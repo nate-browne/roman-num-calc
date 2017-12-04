@@ -19,8 +19,7 @@ javadoc: RNC.java
 	mv stylesheet.css Javadoc\ Stuff
 
 clean:
-	rm -rf RNCalculator *.class
-	rm -rf Javadoc\ Stuff
+	rm -rf RNCalculator *.class Javadoc\ Stuff
 
 new:
 	make clean
