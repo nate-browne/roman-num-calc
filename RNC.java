@@ -21,29 +21,79 @@ public class RNC {
   private static char[] numeralList = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
 
   /**
-   * This method grabs the user input and stores it in stack1 for use in the
-   * calculation method.
+   * This method grabs the user input. It starts with parsing a string and
+   * converting it all to upper case. Then, a boolean array is created with the
+   * same length as the string entered in so that each boolean in the array is a
+   * one to one correspondence with each character in the string. Each character
+   * of the string is checked against the numeralList array to make sure it is a
+   * valid Roman Numeral, and if every character is valid, the string is
+   * returned.
+   *
    * @return the string grabbed by the user
    */
   private static String grabInput() throws NoSuchElementException {
 
-    // Used to grab input in this method
+    // Create scanner used to parse input in this method
     Scanner input = new Scanner(System.in);
 
     System.out.print("\n\nType in a string of Roman Numerals ");
-    System.out.print("(I, V, X, L, C, D, M). ");
-    System.out.print("\nThen, hit enter when finished for calculation in");
-    System.out.print(" decimal and hexadecimal. Type EOF to end the program\n");
+    System.out.println("(I, V, X, L, C, D, M).");
+    System.out.print("Then, hit enter when finished for calculation in");
+    System.out.print(" decimal and hex. Type EOF to end the program.\n");
 
-    // Grab the user string
+    // Parse the user string
     String toConvert = input.next().toUpperCase();
+
+    // Create a boolean of length the same size of the string for checking
+    boolean[] checkString = new boolean[toConvert.length()];
+
+    //Initialize every boolean in the string to false to begin
+    for(int initial = 0; initial < checkString.length; initial++) {
+
+      checkString[initial] = false;
+    }
+
+    // Check the string for legitimacy
+    for(int i = 0; i < toConvert.length(); i++) {
+
+      // Grab the current character
+      char checkLegit = toConvert.charAt(i);
+
+      // Run character against valid characters 
+      for(int j = 0; j < numeralList.length; j++) {
+
+        // If the character is in the list, set the corresponding boolean to
+        // true
+        if(checkLegit == numeralList[j]) {
+
+          checkString[i] = true;
+        }
+      }
+    }
+
+    // Check every boolean value to see if any invalid chars were entered
+    for(int last = 0; last < checkString.length; last++) {
+
+      if(!checkString[last]) {
+
+        System.out.print("You entered an invalid character in your string. ");
+        System.out.println("Please try again.");
+
+        return "";
+      }
+    }
 
     return toConvert;
   }
 
   /**
    * This method takes the user input from the grabInput method and calculates
-   * it into decimal.
+   * it into decimal. The method begins by repeating the input back to the user
+   * before starting the calculation algorithm. Two numbers are parsed at a
+   * time, with basic comparisons between them according to the rules of Roman
+   * Numerals to figure out what number was entered. This number is added to the
+   * running total, which is returned.
+   *
    * @param numberToConvert the number the user has entered from grabInput
    * @return the integer value of the roman numeral strings entered in.
    */
@@ -54,10 +104,7 @@ public class RNC {
 
     // Repeat the input back to the user
     System.out.println("\nThe Roman Numeral you entered to calculate is: " +
-                      numberToConvert);
-
-    // Add a new line for readability
-    System.out.println();
+                      numberToConvert + "\n");
 
     // Begin calculation
     for(int i = 0; i < numberToConvert.length(); i++) {
@@ -95,7 +142,8 @@ public class RNC {
   /**
    * This is the main method of the program. It calls grabInput and eval to
    * correctly turn Roman numerals to decimal and later translates the answer to
-   * hexadecimal before closing.
+   * hexadecimal.
+   *
    * @param args String array of command line arguments
    */
   public static void main(String[] args) {
@@ -103,10 +151,10 @@ public class RNC {
     // Create the HashMap
     numerals = new HashMap<Character, Integer>(numeralList.length);
 
-    // String for the user
+    // String for the user's entered input
     String input;
 
-    // Add the correct values into the HashMap
+    // Populate the HashMap
     numerals.put('I', 1);
     numerals.put('V', 5);
     numerals.put('X', 10);
@@ -123,11 +171,17 @@ public class RNC {
 
       try {
 
-        // Grab the user input first
-        String toConvert = grabInput();
+        // Grab user string
+        input = grabInput();
+
+        // Check if string was invalid
+        if(input.equals("")) {
+
+          continue;
+        }
 
         // Evaluate the user string
-        int result = eval(toConvert);
+        int result = eval(input);
 
         // Report the results
         System.out.print("The Roman numeral string you entered converted to");
@@ -138,7 +192,7 @@ public class RNC {
         System.out.println("In hex, the number is: 0x" + hexResult);
       } catch(NoSuchElementException e) {
 
-        System.out.println("Exiting...\n");
+        System.out.println("\nExiting...");
         System.exit(0);
       }
     }
