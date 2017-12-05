@@ -37,10 +37,12 @@ public class RNC {
     // Create scanner used to parse input in this method
     Scanner input = new Scanner(System.in);
 
-    System.out.print("\n\nType in a string of Roman Numerals ");
+    System.out.print("*******************************************************");
+    System.out.print("\nType in a string of Roman Numerals ");
     System.out.println("(I, V, X, L, C, D, M).");
     System.out.print("Then, hit enter when finished for calculation in");
-    System.out.print(" decimal and hex. Type EOF to end the program.\n");
+    System.out.println(" decimal and hex. Type EOF to end the program.");
+    System.out.print("Your Roman Numerals are: ");
 
     // Parse the user string, converting it all to upper case
     String toConvert = input.next().toUpperCase();
@@ -97,7 +99,7 @@ public class RNC {
    * running total, which is returned.
    *
    * @param numberToConvert the number the user has entered from grabInput
-   * @return the integer value of the roman numeral strings entered in.
+   * @return the integer value of the Roman Numeral strings entered in.
    */
   private static int eval(String numberToConvert) {
 
@@ -195,7 +197,7 @@ public class RNC {
         System.out.println("In hex, the number is: 0x" + hexResult);
       } catch(NoSuchElementException e) {
 
-        System.out.println("\nExiting...");
+        System.out.println("\n\nExiting...");
         System.exit(0);
       }
     }
