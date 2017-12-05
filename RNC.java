@@ -24,11 +24,12 @@ public class RNC {
    * This method grabs the user input. It starts with parsing a string and
    * converting it all to upper case. Then, a boolean array is created with the
    * same length as the string entered in so that each boolean in the array is a
-   * one to one correspondence with each character in the string. Each character
+   * one-to-one correspondence with each character in the string. Each character
    * of the string is checked against the numeralList array to make sure it is a
    * valid Roman Numeral, and if every character is valid, the string is
    * returned.
    *
+   * @throws NoSuchElementException
    * @return the string grabbed by the user
    */
   private static String grabInput() throws NoSuchElementException {
@@ -41,29 +42,30 @@ public class RNC {
     System.out.print("Then, hit enter when finished for calculation in");
     System.out.print(" decimal and hex. Type EOF to end the program.\n");
 
-    // Parse the user string
+    // Parse the user string, converting it all to upper case
     String toConvert = input.next().toUpperCase();
 
-    // Create a boolean of length the same size of the string for checking
+    // Create a boolean array of length the same size of the string
     boolean[] checkString = new boolean[toConvert.length()];
 
-    //Initialize every boolean in the string to false to begin
+    //Initialize every boolean in the array to false to begin
     for(int initial = 0; initial < checkString.length; initial++) {
 
       checkString[initial] = false;
     }
 
-    // Check the string for legitimacy
+    /* Check the string for legitimate characters */
+
+    // Begin outer for loop going through the parsed string
     for(int i = 0; i < toConvert.length(); i++) {
 
       // Grab the current character
       char checkLegit = toConvert.charAt(i);
 
-      // Run character against valid characters 
+      // Run current char against array of valid characters
       for(int j = 0; j < numeralList.length; j++) {
 
-        // If the character is in the list, set the corresponding boolean to
-        // true
+        // If the character is valid, set the corresponding boolean to true
         if(checkLegit == numeralList[j]) {
 
           checkString[i] = true;
@@ -104,7 +106,7 @@ public class RNC {
 
     // Repeat the input back to the user
     System.out.println("\nThe Roman Numeral you entered to calculate is: " +
-                      numberToConvert + "\n");
+                       numberToConvert + "\n");
 
     // Begin calculation
     for(int i = 0; i < numberToConvert.length(); i++) {
@@ -171,10 +173,11 @@ public class RNC {
 
       try {
 
-        // Grab user string
+        // Grab the user string
         input = grabInput();
 
-        // Check if string was invalid
+        // If input is the empty string, the user entered an invalid string.
+        // Restart the loop.
         if(input.equals("")) {
 
           continue;
