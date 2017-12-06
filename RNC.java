@@ -17,7 +17,7 @@ public class RNC {
   // HashMap used to store the values of the Roman Numerals
   private static HashMap<Character, Integer> numerals;
 
-  // Array of numerals used in grabInput method
+  // Array of valid Roman Numerals used in grabInput method
   private static char[] numeralList = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
 
   /**
