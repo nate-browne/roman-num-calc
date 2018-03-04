@@ -29,7 +29,7 @@ public class RNC {
    * valid Roman Numeral, and if every character is valid, the string is
    * returned.
    *
-   * @throws NoSuchElementException
+   * @throws NoSuchElementException if the user types EOF
    * @return the string grabbed by the user
    */
   private static String grabInput() throws NoSuchElementException {
@@ -64,14 +64,10 @@ public class RNC {
       // Grab the current character
       char checkLegit = toConvert.charAt(i);
 
-      // Run current char against array of valid characters
-      for(int j = 0; j < numeralList.length; j++) {
+      // Make sure character is in the HashMap as a key value
+      if(numerals.containsKey(checkLegit)) {
 
-        // If the character is valid, set the corresponding boolean to true
-        if(checkLegit == numeralList[j]) {
-
-          checkString[i] = true;
-        }
+        checkString[i] = true;
       }
     }
 
@@ -80,8 +76,8 @@ public class RNC {
 
       if(!checkString[last]) {
 
-        System.out.print("You entered an invalid character in your string. ");
-        System.out.println("Please try again.");
+        System.err.print("You entered an invalid character in your string. ");
+        System.err.println("Please try again.");
 
         return "";
       }
@@ -182,6 +178,7 @@ public class RNC {
         // Restart the loop.
         if(input.equals("")) {
 
+          System.out.print("\n");
           continue;
         }
 
