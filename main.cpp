@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     // Grab user input
     input = converter.grabInput();
 
-    // If we get the input "quit", the user wants to quit
+    // If we get the input "quit", end the program
     if(input == "quit") {
 
       break;
@@ -62,7 +62,6 @@ int main(int argc, char *argv[]) {
 
     // Evaluate the string
     result = converter.eval(input);
-
 
     // Report results
     std::cout << "The Roman Numeral string you entered to convert to decimal ";

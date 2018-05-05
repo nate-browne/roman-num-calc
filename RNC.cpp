@@ -88,7 +88,7 @@ const std::string RNC::grabInput(void) {
   char buffer[BUFSIZ];
 
   // Int used to make sure entire string was valid
-  int validCount = 0;
+  unsigned int validCount = 0;
 
   // Print intro to user
   std::cout << "*******************************************************";
