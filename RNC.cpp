@@ -19,7 +19,7 @@ Description:     This file implements the RNC class and creates a way to
 % Routine Name: RNC::RNC(void)
 % File: RNC.cpp
 %
-% Description:  Constructor for the RNC object. Initializes the unordered_set
+% Description:  Constructor for the RNC object. Initializes the unordered_map
 %
 % Result:       A RNC object is allocated
 % Return:       Void.
@@ -121,8 +121,8 @@ const std::string RNC::grabInput(void) {
     // Grab current character
     char check = *it;
 
-    // Make sure character is in the unordered_set
-    if(numerals->find(check) != numerals->end()) {
+    // Make sure character is in the unordered_map
+    if(this->numerals->find(check) != this->numerals->end()) {
 
       validCount++;
     }
@@ -174,13 +174,13 @@ const int RNC::eval(const std::string & numToConvert) {
   for( ; str < numToConvert.end(); str++) {
 
     // Grab first value
-    it = numerals->find(*str);
+    it = this->numerals->find(*str);
     num1 = it->second;
 
     // Grab second value, if it exists
     if(str + 1 < numToConvert.end()) {
 
-      it = numerals->find(*(str + 1));
+      it = this->numerals->find(*(str + 1));
       num2 = it->second;
 
       // Compare values
