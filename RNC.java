@@ -32,7 +32,7 @@ public class RNC {
    * @throws NoSuchElementException if the user types EOF. Used to end execution
    * @return the string grabbed by the user
    */
-  private String grabInput() throws NoSuchElementException {
+  public String grabInput() throws NoSuchElementException {
 
     // Create scanner used to parse input in this method
     Scanner input = new Scanner(System.in);
@@ -97,13 +97,10 @@ public class RNC {
    * @param numberToConvert the number the user has entered from grabInput
    * @return the integer value of the Roman Numeral strings entered in.
    */
-  private int eval(String numberToConvert) {
+  public int eval(String numberToConvert) {
 
-    // Return value of method
-    int answer = 0;
-
-    // First and second values parsed
-    int num1, num2;
+    // Return value of method and intermediate values
+    int answer = 0, num1, num2;
 
     // Repeat the input back to the user
     System.out.println("\nThe Roman Numeral you entered to calculate is: " +
@@ -159,58 +156,5 @@ public class RNC {
     this.numerals.put('C', 100);
     this.numerals.put('D', 500);
     this.numerals.put('M', 1000);
-  }
-
-  /**
-   * This is the main method of the program. It calls grabInput and eval to
-   * correctly turn Roman numerals to decimal and later translates the answer to
-   * hexadecimal.
-   *
-   * @param args String array of command line arguments
-   */
-  public static void main(String[] args) {
-
-    // String for the user's entered input
-    String input;
-    int result;
-
-    // Create a RNC object
-    RNC converter = new RNC();
-
-    // Print welcome message
-    System.out.println("\nWelcome to the Roman Numeral Calculator!");
-
-    // Start infinite loop for program
-    while(true) {
-
-      try {
-
-        // Grab the user string
-        input = converter.grabInput();
-
-        // If input is the empty string, the user entered an invalid string.
-        // Restart the loop.
-        if(input.equals("")) {
-
-          System.out.print("\n");
-          continue;
-        }
-
-        // Evaluate the user string
-        result = converter.eval(input);
-
-        // Report the results
-        System.out.print("The Roman numeral string you entered converted to");
-        System.out.println(" decimal is: " + result);
-
-        String hexResult = Integer.toHexString(result).toUpperCase();
-
-        System.out.println("In hex, the number is: 0x" + hexResult);
-      } catch(NoSuchElementException e) {
-
-        System.out.println("\n\nExiting...");
-        System.exit(0);
-      }
-    }
   }
 }
