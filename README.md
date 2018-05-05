@@ -27,6 +27,8 @@ different target. To compile this version, use `make calc_cpp`.
 
 Shoutout to Aidan Bohley for providing test cases to verify correctness of this
 project. Pull requests are encouraged, but be sure to conform to the [Google
-Java style guide](https://google.github.io/styleguide/javaguide.html).
+Java style guide](https://google.github.io/styleguide/javaguide.html). For the
+C++ program, please conform to the [Google C++ style
+guide](https://google.github.io/styleguide/cppguide.html).
 
 Contact me at natebrowne@outlook.com with any suggestions/bug fixes.
