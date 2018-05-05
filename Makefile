@@ -27,7 +27,7 @@ valgrind_calc: calc_cpp
 # Compile the C++ executable
 calc_cpp: RNC.o
 	@echo "Linking all object modules ..."
-	g++ -Wall -pedantic -g -o RNCalcC++ main.cpp RNC.o
+	g++ -Wall -pedantic -g -std=c++11 -o RNCalcC++ main.cpp RNC.o
 	rm *.o
 	@echo ""
 	@echo "Compilation Successful!"
@@ -35,7 +35,7 @@ calc_cpp: RNC.o
 # Object file creation for C++ executable
 RNC.o: RNC.cpp RNC.h
 	@echo "Compiling C++ files..."
-	g++ -Wall -pedantic -g -c RNC.cpp
+	g++ -Wall -pedantic -g -c -std=c++11 RNC.cpp
 
 # Compile the Java files for the executable
 RNCCalc.class: RNCCalc.java RNC.java
