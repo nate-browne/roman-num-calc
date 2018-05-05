@@ -1,8 +1,0 @@
-This simple program turns your string of Roman numerals into a decimal and
-hexadecimal number. The included makefile allows for easy compilation and simple
-usage of the program.
-
-Shoutout to Aidan Bohley for providing test cases to verify correctness of this
-project.
-
-Contact natebrowne@outlook.com with any suggestions/bug fixes.

@@ -1,9 +1,9 @@
 /*
- * Name: Nate Browne
+ * Author: Nate Browne
  * Date: 20 September 2017
  * File: RNC.java
- * Version: 1.0
- * Last Modified: 2 December 2017
+ * Version: 2.0
+ * Last Modified: 5 May 2018
  * This program translates strings of Roman numerals into the decimal
  * equivalent.
  */
@@ -15,24 +15,24 @@ public class RNC {
   /* Instance variables and constants declaration */
 
   // HashMap used to store the values of the Roman Numerals
-  private static HashMap<Character, Integer> numerals;
+  private HashMap<Character, Integer> numerals;
 
-  // Array of valid Roman Numerals used in grabInput method
-  private static char[] numeralList = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+  // Number of available Roman Numerals
+  private static final int NUM_CHARS = 7;
 
   /**
    * This method grabs the user input. It starts with parsing a string and
    * converting it all to upper case. Then, a boolean array is created with the
    * same length as the string entered in so that each boolean in the array is a
    * one-to-one correspondence with each character in the string. Each character
-   * of the string is checked against the numeralList array to make sure it is a
-   * valid Roman Numeral, and if every character is valid, the string is
+   * of the string is checked against the keys in the HashMap to verify that it
+   * is a valid Roman Numeral, and if every character is valid, the string is
    * returned.
    *
-   * @throws NoSuchElementException if the user types EOF
+   * @throws NoSuchElementException if the user types EOF. Used to end execution
    * @return the string grabbed by the user
    */
-  private static String grabInput() throws NoSuchElementException {
+  private String grabInput() throws NoSuchElementException {
 
     // Create scanner used to parse input in this method
     Scanner input = new Scanner(System.in);
@@ -59,24 +59,24 @@ public class RNC {
     /* Check the string for legitimate characters */
 
     // Begin outer for loop going through the parsed string
-    for(int i = 0; i < toConvert.length(); i++) {
+    for(int ind = 0; ind < toConvert.length(); ind++) {
 
       // Grab the current character
-      char checkLegit = toConvert.charAt(i);
+      char checkLegit = toConvert.charAt(ind);
 
       // Make sure character is in the HashMap as a key value
       if(numerals.containsKey(checkLegit)) {
 
-        checkString[i] = true;
+        checkString[ind] = true;
       }
     }
 
     // Check every boolean value to see if any invalid chars were entered
-    for(int last = 0; last < checkString.length; last++) {
+    for(int ind = 0; ind < checkString.length; ind++) {
 
-      if(!checkString[last]) {
+      if(!checkString[ind]) {
 
-        System.err.print("You entered an invalid character in your string. ");
+        System.err.print("The character " + toConvert.charAt(ind));
         System.err.println("Please try again.");
 
         return "";
@@ -97,25 +97,28 @@ public class RNC {
    * @param numberToConvert the number the user has entered from grabInput
    * @return the integer value of the Roman Numeral strings entered in.
    */
-  private static int eval(String numberToConvert) {
+  private int eval(String numberToConvert) {
 
     // Return value of method
     int answer = 0;
+
+    // First and second values parsed
+    int num1, num2;
 
     // Repeat the input back to the user
     System.out.println("\nThe Roman Numeral you entered to calculate is: " +
                        numberToConvert + "\n");
 
     // Begin calculation
-    for(int i = 0; i < numberToConvert.length(); i++) {
+    for(int ind = 0; ind < numberToConvert.length(); ind++) {
 
       // Grab first value
-      int num1 = numerals.get(numberToConvert.charAt(i));
+      num1 = numerals.get(numberToConvert.charAt(ind));
 
       // Grab second value, if it exists
-      if(i + 1 < numberToConvert.length()) {
+      if(ind + 1 < numberToConvert.length()) {
 
-        int num2 = numerals.get(numberToConvert.charAt(i + 1));
+        num2 = numerals.get(numberToConvert.charAt(ind + 1));
 
         // Compare values
         if(num1 >= num2) {
@@ -126,17 +129,36 @@ public class RNC {
 
           // Value is less, so subtract the values before adding to final result
           answer += num2 - num1;
-          i++;
+          ind++;
         }
       } else {
 
         // Last number has been parsed, so add it to the final result
         answer += num1;
-        i++;
+        ind++;
       }
     }
 
     return answer;
+  }
+
+  /**
+   * Constructor for the RNC object. Initializes the corresponding fields of the
+   * RNC class for usage in the other functions
+   */
+  public RNC() {
+
+    // Create the HashMap
+    this.numerals = new HashMap<Character, Integer>(NUM_CHARS);
+
+    // Populate the HashMap
+    this.numerals.put('I', 1);
+    this.numerals.put('V', 5);
+    this.numerals.put('X', 10);
+    this.numerals.put('L', 50);
+    this.numerals.put('C', 100);
+    this.numerals.put('D', 500);
+    this.numerals.put('M', 1000);
   }
 
   /**
@@ -148,20 +170,12 @@ public class RNC {
    */
   public static void main(String[] args) {
 
-    // Create the HashMap
-    numerals = new HashMap<Character, Integer>(numeralList.length);
-
     // String for the user's entered input
     String input;
+    int result;
 
-    // Populate the HashMap
-    numerals.put('I', 1);
-    numerals.put('V', 5);
-    numerals.put('X', 10);
-    numerals.put('L', 50);
-    numerals.put('C', 100);
-    numerals.put('D', 500);
-    numerals.put('M', 1000);
+    // Create a RNC object
+    RNC converter = new RNC();
 
     // Print welcome message
     System.out.println("\nWelcome to the Roman Numeral Calculator!");
@@ -172,7 +186,7 @@ public class RNC {
       try {
 
         // Grab the user string
-        input = grabInput();
+        input = converter.grabInput();
 
         // If input is the empty string, the user entered an invalid string.
         // Restart the loop.
@@ -183,7 +197,7 @@ public class RNC {
         }
 
         // Evaluate the user string
-        int result = eval(input);
+        result = converter.eval(input);
 
         // Report the results
         System.out.print("The Roman numeral string you entered converted to");
