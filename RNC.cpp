@@ -82,11 +82,11 @@ RNC::~RNC(void) {
 -----------------------------------------------------------------------------*/
 const std::string RNC::grabInput(void) {
 
-  // Create the return value
+  // Return value
   std::string result;
 
-  // Create the buffer used to hold the input
-  char buffer[BUFSIZ] = {0};
+  // Buffer used to hold the input
+  char buffer[BUFSIZ] = {0}, check;
 
   // Used as index when converting string to upper case
   int ind = 0;
@@ -130,7 +130,7 @@ const std::string RNC::grabInput(void) {
   for(it = result.begin(); it < result.end(); it++) {
 
     // Grab current character
-    char check = *it;
+    check = *it;
 
     // Make sure character is in the unordered_map
     if(this->numerals->find(check) != this->numerals->end()) {

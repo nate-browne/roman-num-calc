@@ -44,6 +44,4 @@ public:
   const int eval(const std::string &);
 };
 
-#define NUM_CHARS 7 // Set up the num_chars constant for use in the constructor
-
 #endif

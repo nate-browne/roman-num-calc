@@ -21,6 +21,25 @@ public class RNC {
   private static final int NUM_CHARS = 7;
 
   /**
+   * Constructor for the RNC object. Initializes the corresponding fields of the
+   * RNC class for usage in the other functions
+   */
+  public RNC() {
+
+    // Create the HashMap
+    this.numerals = new HashMap<Character, Integer>(NUM_CHARS);
+
+    // Populate the HashMap
+    this.numerals.put('I', 1);
+    this.numerals.put('V', 5);
+    this.numerals.put('X', 10);
+    this.numerals.put('L', 50);
+    this.numerals.put('C', 100);
+    this.numerals.put('D', 500);
+    this.numerals.put('M', 1000);
+  }
+
+  /**
    * This method grabs the user input. It starts with parsing a string and
    * converting it all to upper case. Then, a boolean array is created with the
    * same length as the string entered in so that each boolean in the array is a
@@ -137,24 +156,5 @@ public class RNC {
     }
 
     return answer;
-  }
-
-  /**
-   * Constructor for the RNC object. Initializes the corresponding fields of the
-   * RNC class for usage in the other functions
-   */
-  public RNC() {
-
-    // Create the HashMap
-    this.numerals = new HashMap<Character, Integer>(NUM_CHARS);
-
-    // Populate the HashMap
-    this.numerals.put('I', 1);
-    this.numerals.put('V', 5);
-    this.numerals.put('X', 10);
-    this.numerals.put('L', 50);
-    this.numerals.put('C', 100);
-    this.numerals.put('D', 500);
-    this.numerals.put('M', 1000);
   }
 }
