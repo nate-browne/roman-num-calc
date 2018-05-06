@@ -76,8 +76,8 @@ public class RNC {
 
       if(!checkString[ind]) {
 
-        System.err.print("The character " + toConvert.charAt(ind));
-        System.err.println("Please try again.");
+        System.err.print("The character '" + toConvert.charAt(ind) + "' is invalid.");
+        System.err.println(" Please try again.");
 
         return "";
       }

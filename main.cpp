@@ -49,12 +49,12 @@ int main(int argc, char *argv[]) {
     input = converter.grabInput();
 
     // If we get the input "quit", end the program
-    if(input == "quit") {
+    if(input == "QUIT") {
 
       break;
 
     // If the input is the empty string, repeat the loop
-    } else if(input == "") {
+    } else if(input == "invalid") {
 
       std::cout << "" << std::endl;
       continue;

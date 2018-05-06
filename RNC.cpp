@@ -11,6 +11,7 @@ Description:     This file implements the RNC class and creates a way to
 
 #include <iostream>
 #include <string>
+#include <cctype>
 #include <unordered_map>
 
 #include "RNC.h"
@@ -85,7 +86,10 @@ const std::string RNC::grabInput(void) {
   std::string result;
 
   // Create the buffer used to hold the input
-  char buffer[BUFSIZ];
+  char buffer[BUFSIZ] = {0};
+
+  // Used as index when converting string to upper case
+  int ind = 0;
 
   // Int used to make sure entire string was valid
   unsigned int validCount = 0;
@@ -101,11 +105,18 @@ const std::string RNC::grabInput(void) {
   // Read in the user's input
   std::cin >> buffer;
 
+  // Convert entire string to upper case
+  while(buffer[ind]) {
+
+    buffer[ind] = toupper(buffer[ind]);
+    ind++;
+  }
+
   // Create a C++ string from the C-style string
   result = std::string(buffer);
 
   // Check if user wants to quit
-  if(result == "quit") {
+  if(result == "QUIT") {
 
     return result;
   }
@@ -134,7 +145,7 @@ const std::string RNC::grabInput(void) {
     std::cerr << "The string has invalid characters. Please try again." <<
       std::endl;
 
-    return "";
+    return "invalid";
   }
 
   return result;
