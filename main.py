@@ -1,4 +1,4 @@
-#!/usr/local/bin/python2
+#!/usr/bin/env python2
 # Author: Nate Browne
 # Version: 1.0
 # Date: 05 May 2018
