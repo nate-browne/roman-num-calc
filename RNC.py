@@ -16,7 +16,6 @@ class RNC(object):
 
     """
     Constructor. Initializes the dict object
-    Param: unused: unused integer value not used at all
     """
     def __init__(self):
 

@@ -11,8 +11,7 @@ Description:     This header file defines the RNC class used in RNC.cpp
 #ifndef RNC_h
 #define RNC_h
 
-#include <string>
-#include <unordered_map>
+#include <unordered_map> // Defining the HashMap used
 
 /*=============================================================================
 / class RNC

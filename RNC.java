@@ -95,7 +95,10 @@ public class RNC {
 
       if(!checkString[ind]) {
 
-        System.err.print("The character '" + toConvert.charAt(ind) + "' is invalid.");
+        // Grab current bad character for readability
+        char curr = toConvert.charAt(ind);
+
+        System.err.print("The character '" + curr + "' is invalid.");
         System.err.println(" Please try again.");
 
         return "";
