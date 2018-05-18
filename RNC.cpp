@@ -10,6 +10,7 @@ Description:     This file implements the RNC class and creates a way to
 -----------------------------------------------------------------------------*/
 
 #include <iostream>
+#include <cstdio>
 #include <string>
 #include <cctype>
 #include <unordered_map>
@@ -85,11 +86,11 @@ const std::string RNC::grabInput(void) {
   // Return value
   std::string result;
 
-  // Buffer used to hold the input
-  char buffer[BUFSIZ] = {0}, check;
+  // Buffer used to hold the input, char to check, pointers for fgets and strstr
+  char buffer[BUFSIZ] = {0}, check, *retVal, *newline;
 
-  // Used as index when converting string to upper case
-  int ind = 0;
+  // index for converting string to upper case, location of newline
+  int ind = 0, loc;
 
   // Int used to make sure entire string was valid
   unsigned int validCount = 0;
@@ -103,7 +104,19 @@ const std::string RNC::grabInput(void) {
   std::cout << "Your Roman Numerals are: ";
 
   // Read in the user's input
-  std::cin >> buffer;
+  retVal = fgets(buffer, BUFSIZ, stdin);
+
+  // Check for EOF
+  if(!retVal) {
+
+    std::cout << std::endl;
+    return "QUIT";
+  }
+
+  // Find the \n and replace it with a null
+  newline = strstr(buffer, "\n");
+  loc = newline - buffer;
+  buffer[loc] = '\0';
 
   // Convert entire string to upper case
   while(buffer[ind]) {
@@ -112,7 +125,7 @@ const std::string RNC::grabInput(void) {
     ind++;
   }
 
-  // Create a C++ string from the C-style string
+  // Create a C++ style string
   result = std::string(buffer);
 
   // Check if user wants to quit
@@ -152,7 +165,7 @@ const std::string RNC::grabInput(void) {
 }
 
 /*-----------------------------------------------------------------------------
-% Routine Name: const int RNC::eval(std::string numToConvert)
+% Routine Name: const int RNC::eval(std::string & numToConvert)
 % File: RNC.cpp
 %
 % Description:  This function takes the user input parsed from grabInput and

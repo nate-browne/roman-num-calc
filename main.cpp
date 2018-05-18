@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     // If the input is the empty string, repeat the loop
     } else if(input == "invalid") {
 
-      std::cout << "" << std::endl;
+      std::cout << std::endl;
       continue;
     }
 
