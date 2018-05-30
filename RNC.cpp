@@ -11,6 +11,7 @@ Description:     This file implements the RNC class and creates a way to
 
 #include <iostream>
 #include <cstdio>
+#include <cstring>
 #include <string>
 #include <cctype>
 #include <unordered_map>
