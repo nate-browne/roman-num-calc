@@ -14,7 +14,6 @@ Description:     This file implements the RNC class and creates a way to
 #include <cstring>
 #include <string>
 #include <cctype>
-#include <unordered_map>
 
 #include "RNC.h"
 

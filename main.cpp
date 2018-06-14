@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     std::cout << " is: " << result << std::endl;
 
     // Print hex result
-    printf("In hex, the number is %#X\n", result);
+    printf("In hex, the number is %#x\n", result);
   }
 
   std::cout << "Exiting..." << std::endl;
