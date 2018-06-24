@@ -8,6 +8,10 @@
 
 import java.util.*;
 
+/**
+ * This class contains the main driver of the Java version of the Roman Numeral
+ * Calculator. Only contains the main method.
+ */
 public class RNCCalc {
 
   /**

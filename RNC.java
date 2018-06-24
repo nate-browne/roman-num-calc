@@ -10,6 +10,10 @@
 
 import java.util.*;
 
+/**
+ * This file contains the class information for the RNC module and
+ * defines the properties associated with it.
+ */
 public class RNC {
 
   /* Instance variables and constants declaration */
@@ -98,13 +102,18 @@ public class RNC {
         // Grab current bad character for readability
         char curr = toConvert.charAt(ind);
 
+        // Print out an error message
         System.err.print("The character '" + curr + "' is invalid.");
         System.err.println(" Please try again.");
 
+        // Make sure to close the scanner to save on resources
+        input.close();
         return "";
       }
     }
 
+    // Make sure to close the scanner to save on resources
+    input.close();
     return toConvert;
   }
 
