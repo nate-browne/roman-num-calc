@@ -6,19 +6,18 @@
 # This file is a translation of the RNC.java file into python for use in other
 # Python projects. Maintains the same OOP approach as the original Java file.
 
-"""
-Creates a RNC class used in the file main.py. Contains only a dict with key
-value pairs of strings and integers, respectively
-Attributes:
-    numerals: dict of key value pairs for strings and ints
-"""
 class RNC(object):
+    """
+    Creates a RNC class used in the file main.py. Contains only a dict with key
+    value pairs of strings and integers, respectively
+    Attributes:
+        numerals: dict of key value pairs for strings and ints
+    """
 
-    """
-    Constructor. Initializes the dict object
-    """
     def __init__(self):
-
+        """
+        Constructor. Initializes the dict object
+        """
         # Initialize the dict
         self.numerals = {}
 
@@ -31,14 +30,11 @@ class RNC(object):
         self.numerals['D'] = 500
         self.numerals['M'] = 1000
 
-    """
-    Function used to parse the user input verify that it is a valid Roman
-    Numeral
-    Return: The parsed string to use
-    Exceptions Thrown: EOFError when user types ^D
-    """
     def grab_input(self):
-
+        """
+        Function used to parse the user input verify that it is a valid Roman
+        Numeral. Throws an EOFError if the user wants to end the program
+        """
         # Counter to verify that the string was valid
         counter = 0
 
@@ -76,13 +72,10 @@ class RNC(object):
 
             raise EOFError
 
-    """
-    Function used to evaluate the given string as Roman Numerals
-    Param: usr_str: string to parse
-    Return: Integer value corresponding to the string
-    """
     def eval(self, usr_str):
-
+        """
+        Function used to evaluate the given string as Roman Numerals
+        """
         # Return value
         answer = 0
 

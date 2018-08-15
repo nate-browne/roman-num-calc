@@ -8,10 +8,6 @@
 
 import RNC as cl
 
-"""
-Main method. Calls eval and getInput repeatedly in a loop until user wants to
-stop calculating values
-"""
 def main():
 
     # Create RNC object
